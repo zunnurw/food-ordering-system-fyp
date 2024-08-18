@@ -18,16 +18,16 @@ This food-ordering system is developed as a Final Year Project (FYP) to streamli
 
 ## Overview
 
-### Picture 1
+### Customer Page
 ![Customer Page](overview/1.png)
 
-### Picture 2
+### Order Progress Status
 ![Order Progress Status](overview/2.png)
 
-### Picture 3
+### Chef Page
 ![Chef Page](overview/3.png)
 
-### Picture 4
+### Admin Page
 ![Admin Page](overview/4.png)
 
 ## Features
