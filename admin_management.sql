@@ -1,0 +1,206 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Jul 17, 2024 at 05:41 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `admin_management`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin_panel`
+--
+
+CREATE TABLE `admin_panel` (
+  `id` int(250) NOT NULL,
+  `order_menu` mediumtext NOT NULL,
+  `table_no` varchar(250) DEFAULT NULL,
+  `total_price` decimal(10,2) NOT NULL,
+  `order_type` varchar(250) NOT NULL,
+  `action` enum('Pending','Approved','Rejected') DEFAULT 'Pending',
+  `status` varchar(250) NOT NULL,
+  `operation` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `menu_items`
+--
+
+CREATE TABLE `menu_items` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `description` text DEFAULT NULL,
+  `price` decimal(10,2) NOT NULL,
+  `category` varchar(100) DEFAULT NULL,
+  `image` mediumblob DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `menu_items`
+--
+
+INSERT INTO `menu_items` (`id`, `name`, `description`, `price`, `category`, `image`) VALUES
+(1, 'CHICKEN CHOP', 'CHICKEN CHOP 2 SLICE, 1 ROTI BAKAR, 2 SOSEJ AYAM, \r\n1 DAGING AYAM RAMLY, FRIES, SALAD', 30.90, 'Popular Menu', 0x75706c6f6164732f636869636b656e43686f702e706e67),
+(2, 'CHICKEN CHOP KAWIN', '1 AYAM CHICKEN CHOP, 1 AYAM GRILL, 1 ROTI BAKAR, 2 SOSEJ AYAM, 1 DAGING AYAM RAMLY, FRIES, SALAD', 30.90, 'Popular Menu', 0x75706c6f6164732f636869636b656e43686f702e706e67),
+(3, 'CHICKEN GRILL', 'CHICKEN GRILL 2 SLICE, 2 SOSEJ, 2 DAGING \r\nAYAM RAMLY, ROTI BAKAR, FRIES, SALAD', 30.90, 'Popular Menu', 0x75706c6f6164732f636869636b656e4772696c6c2e706e67),
+(4, 'PRAWN CHIP', '16 EKOR UDANG, FRIES, SALAD & TATAR SAUCE', 31.90, 'Popular Menu', 0x75706c6f6164732f707261776e436869702e706e67),
+(5, 'CALAMARI CHIP', '16 SOTONG, FRIES, TATAR SALAD', 25.90, 'Popular Menu', 0x75706c6f6164732f63616c616d617269436869702e706e67),
+(6, 'FISH & CHIP', '7 SLICE DORY FRESH, FRIES, SALAD, TATAR SAUCE', 28.90, 'Popular Menu', 0x75706c6f6164732f66697368436869702e706e67),
+(7, 'LAMB GRILL', 'LAMB GRILL 5 SLICE, FRIES, ROTI BAKAR, SALAD', 51.90, 'Popular Menu', 0x75706c6f6164732f6c616d624772696c6c2e706e67),
+(8, 'NASI GORENG', '', 6.00, 'Nasi Goreng', 0x75706c6f6164732f6e617369476f72656e672e706e67),
+(9, 'NASI GORENG UDANG', '', 27.90, 'Nasi Goreng', 0x75706c6f6164732f6e617369475f7564616e672e706e67),
+(10, 'NASI GORENG SOTONG', '', 23.90, 'Nasi Goreng', 0x75706c6f6164732f6e617369475f736f746f6e672e706e67),
+(11, 'NASI GORENG CHICKEN GRILL', '', 26.90, 'Nasi Goreng', 0x75706c6f6164732f6e617369475f636869636b656e5f6772696c6c2e706e67),
+(12, 'NASI GORENG CHICKEN CHOP', '', 26.90, 'Nasi Goreng', 0x75706c6f6164732f6e617369475f636869636b656e5f63686f702e706e67),
+(13, 'NASI GORENG LAMB GRILL', '', 27.90, 'Nasi Goreng', 0x75706c6f6164732f6e617369475f6c616d626772696c6c2e706e67),
+(14, 'NASI GORENG MEATBALL', '', 27.90, 'Nasi Goreng', 0x75706c6f6164732f6e617369475f6d65617462616c6c2e706e67),
+(15, 'CRISPY BURGER', '', 18.90, 'Burger', 0x75706c6f6164732f6372697370794275726765722e706e67),
+(16, 'SMOKEY BURGER', '', 18.90, 'Burger', 0x75706c6f6164732f736d6f6b65794275726765722e706e67),
+(17, 'SUPER BURGER', '', 29.90, 'Burger', 0x75706c6f6164732f73757065724275726765722e706e67),
+(18, 'GOLDEN BURGER', '', 18.90, 'Burger', 0x75706c6f6164732f676f6c64656e4275726765722e706e67),
+(19, 'MEATBALLS', '8 MEATBALLS, FRIES, SALAD', 16.90, 'Side Dish', 0x75706c6f6164732f6d65617462616c6c732e504e47),
+(20, 'MUSHROOM SOUP', '4 GARLIC BREAD, MUSHROOM SOUP 1 CUP', 9.90, 'Side Dish', 0x75706c6f6164732f736f75702e504e47),
+(21, 'FRIES CHEESE', 'FRENCH FRIES WITH CHEESE', 8.90, 'Side Dish', 0x75706c6f6164732f66726965734368656573652e706e67),
+(22, 'LOADED FRIES CHICKEN CHOP', '', 10.90, 'Side Dish', 0x75706c6f6164732f6c6f616465644672696573436869636b656e43686f702e504e47),
+(23, 'SPAGHETTI CARBONARA', 'SPAGHETTI, 1 CHICKEN GRILL, BACON', 20.90, 'Spaghetti', 0x75706c6f6164732f7370616768657474694361722e504e47),
+(24, 'SPAGHETTI AGLIO OLIO', 'SPAGHETTI, 10 UDANG, 5 SOTONG', 22.90, 'Spaghetti', 0x75706c6f6164732f73706167686574746941676c696f2e504e47),
+(25, 'MILO AIS VVIP', 'MILO AIS WITH ICE CREAM', 10.50, 'Drinks', 0x75706c6f6164732f63686f63565649502e504e47),
+(26, 'JUS OREN VVIP', 'JUS OREN WITH ICE CREAM', 10.50, 'Drinks', 0x75706c6f6164732f6a75734f72656e565649502e6a666966),
+(27, 'JUS APPLE VVIP', 'JUS APPLE WITH ICE CREAM', 10.50, 'Drinks', 0x75706c6f6164732f6a75734170706c65565649502e504e47),
+(28, 'COKELAT VVIP', 'COKELAT WITH ICE CREAM', 10.50, 'Drinks', 0x75706c6f6164732f63686f63565649502e504e47),
+(29, 'JAGUNG VVIP', 'JAGUNG WITH ICE CREAM', 10.50, 'Drinks', 0x75706c6f6164732f6a6167756e67565649502e504e47),
+(30, 'KELADI VVIP', 'KELADI WITH ICE CREAM', 10.50, 'Drinks', 0x75706c6f6164732f6b656c616469565649502e504e47),
+(31, 'HOT TEH O BIG CUP', '', 4.00, 'Drinks', 0x75706c6f6164732f686f745465684f2e6a7067),
+(32, 'HOT TEH BIG CUP', '', 4.90, 'Drinks', 0x75706c6f6164732f746568546172696b2e6a7067),
+(33, 'HOT MILO O BIG CUP', '', 5.90, 'Drinks', 0x75706c6f6164732f686f744d696c6f4f2e6a7067),
+(34, 'HOT MILO BIG CUP', '', 6.90, 'Drinks', 0x75706c6f6164732f686f744d696c6f4f2e6a7067),
+(35, 'HOT KOPI O BIG CUP', '', 4.00, 'Drinks', 0x75706c6f6164732f686f744b6f70694f2e6a666966),
+(36, 'HOT KOPI BIG CUP', '', 4.90, 'Drinks', 0x75706c6f6164732f686f744b6f70694f2e6a666966),
+(37, 'TEH O AIS VIP', 'TEH O AIS WITH ICE CREAM', 4.90, 'Drinks', 0x75706c6f6164732f7465684f4169735649502e6a7067),
+(38, 'TEH AIS VIP', 'TEH AIS WITH ICE CREAM', 6.90, 'Drinks', 0x75706c6f6164732f7465684169735649502e6a7067),
+(39, 'KOPI AIS VIP', 'KOPI AIS WITH ICE CREAM', 6.90, 'Drinks', 0x75706c6f6164732f6b6f70694169735649502e6a7067),
+(40, 'KOPI O AIS VIP', 'KOPI O AIS WITH ICE CREAM', 4.90, 'Drinks', 0x75706c6f6164732f6b6f70694169735649502e6a7067),
+(41, 'MILO O AIS VIP', 'MILO O AIS WITH ICE CREAM', 7.90, 'Drinks', 0x75706c6f6164732f63686f63565649502e504e47),
+(42, 'TEH O AIS LIMAU VIP', 'TEH O AIS LIMAU WITH ICE CREAM', 7.00, 'Drinks', 0x75706c6f6164732f7465684f4169734c696d61755649502e6a666966),
+(43, 'OREN SUNQUICK VIP', 'OREN SUNQUICK WITH ICE CREAM', 5.90, 'Drinks', 0x75706c6f6164732f6f72656e53756e717569636b5649502e6a7067),
+(44, 'BLACKCURRANT VIP', 'BLACKCURRANT WITH ICE CREAM', 5.90, 'Drinks', 0x75706c6f6164732f626c61636b63757272616e745649502e6a7067),
+(45, 'BANDUNG VIP', 'BANDUNG WITH ICE CREAM', 6.90, 'Drinks', 0x75706c6f6164732f62616e64756e675649502e6a7067),
+(46, 'LEMON AIS BIG CUP', '', 6.90, 'Drinks', 0x75706c6f6164732f6c656d6f6e4169732e77656270),
+(47, 'AIS LEMON TEA BIG CUP', '', 7.90, 'Drinks', 0x75706c6f6164732f6169734c656d6f6e5465612e6a7067);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_details`
+--
+
+CREATE TABLE `order_details` (
+  `order_id` int(11) NOT NULL,
+  `order_item` varchar(1000) NOT NULL,
+  `total_price` decimal(10,2) NOT NULL,
+  `table_number` varchar(20) NOT NULL,
+  `order_status` varchar(100) NOT NULL,
+  `progress` enum('Queued','Preparing','Ready','') NOT NULL DEFAULT 'Queued'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `staff_details`
+--
+
+CREATE TABLE `staff_details` (
+  `id` int(250) NOT NULL,
+  `staff_name` varchar(250) NOT NULL,
+  `username` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `job` varchar(250) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `staff_details`
+--
+
+INSERT INTO `staff_details` (`id`, `staff_name`, `username`, `password`, `job`) VALUES
+(1, 'wafiy', 'wafiy', 'wafiy', 'Admin'),
+(2, 'najmi', 'najmi', 'najmi', 'Admin'),
+(3, 'azhan', 'azhan', 'azhan', 'Chef');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `admin_panel`
+--
+ALTER TABLE `admin_panel`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `menu_items`
+--
+ALTER TABLE `menu_items`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `order_details`
+--
+ALTER TABLE `order_details`
+  ADD PRIMARY KEY (`order_id`);
+
+--
+-- Indexes for table `staff_details`
+--
+ALTER TABLE `staff_details`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `admin_panel`
+--
+ALTER TABLE `admin_panel`
+  MODIFY `id` int(250) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `menu_items`
+--
+ALTER TABLE `menu_items`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+
+--
+-- AUTO_INCREMENT for table `order_details`
+--
+ALTER TABLE `order_details`
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `staff_details`
+--
+ALTER TABLE `staff_details`
+  MODIFY `id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
