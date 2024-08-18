@@ -64,9 +64,6 @@ Contributions are welcome. Please fork the repository and submit a pull request 
 License
 This project is licensed under the MIT License.
 
-markdown
-Copy code
-
 ### Steps to Add the `README.md` to Your Repository
 
 1. **Create the `README.md` File:**
