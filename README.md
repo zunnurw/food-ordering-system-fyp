@@ -10,10 +10,10 @@ This food-ordering system is developed as a Final Year Project (FYP) to streamli
    - [Customer](#customer)
    - [Order Status](#order-status)
    - [Printing Invoice](#printing-invoice)
-2. [Installation](#installation)
-3. [Database Schema](#database-schema)
-4. [Contributing](#contributing)
-5. [License](#license)
+2. [Database Schema](#database-schema)
+3. [Contributing](#contributing)
+4. [License](#license)   
+5. [Installation](#installation)
 
 ## Overview
 
@@ -61,16 +61,6 @@ This food-ordering system is developed as a Final Year Project (FYP) to streamli
 - **Invoice Generation:** After the order is completed, the system allows for the generation and printing of an invoice.
 - **Custom Formatting:** The invoice format includes specific sections for order details, quantities, and prices.
 
-## Installation
-
-To set up the project, clone the repository and configure the environment variables, particularly the database connection.
-
-```bash
-git clone https://github.com/zunnurw/food-ordering-system-fyp.git
-cd food-ordering-system-fyp
-
-Ensure that the .env file is properly configured with your database credentials.
-
 ## Database Schema
 
 The database schema includes the following tables:
@@ -80,7 +70,7 @@ The database schema includes the following tables:
 - `order_menu` (mediumtext): Details of the order menu.
 - `table_no` (varchar): Table number associated with the order.
 - `total_price` (decimal): Total price of the order.
-- `order_type` (varchar): Type of order (e.g., dine-in, takeout).
+- `order_type` (varchar): Type of order (e.g., Dine-in, Takeaway).
 - `action` (enum: 'Pending', 'Approved', 'Rejected'): Status of the action taken.
 - `status` (varchar): Current status of the order.
 - `operation` (timestamp with default and auto-update settings): Timestamp of the operation.
@@ -90,7 +80,7 @@ The database schema includes the following tables:
 - `name` (varchar): Name of the menu item.
 - `description` (text): Description of the menu item.
 - `price` (decimal): Price of the menu item.
-- `category` (varchar): Category of the menu item (e.g., appetizer, main course).
+- `category` (varchar): Category of the menu item (e.g., Popular Menu, Nasi Goreng , Drinks).
 - `image` (varchar): URL or path to the image of the menu item.
 
 ### `order_details`
@@ -98,8 +88,8 @@ The database schema includes the following tables:
 - `order_item` (varchar): Item ordered.
 - `total_price` (decimal): Total price for the order.
 - `table_number` (varchar): Table number for the order.
-- `order_status` (varchar): Status of the order (e.g., Pending, Preparing, Delivered).
-- `progress` (enum: 'Pending', 'Preparing', 'Delivered', ''): Progress status of the order.
+- `order_status` (varchar): Status of the order (e.g., Completed , Not Completed).
+- `progress` (enum: 'Queued', 'Preparing', 'Read', ''): Progress status of the order.
 
 ### `staff_details`
 - `id` (Primary Key, int)
@@ -108,18 +98,20 @@ The database schema includes the following tables:
 - `password` (varchar): Password for the staff member.
 - `job` (varchar): Job title or role of the staff member.
 
-Contributing
+## Contributing
+
 Contributions are welcome. Please fork the repository and submit a pull request for any features or bug fixes.
 
-License
+## License
+
 This project is licensed under the MIT License.
 
-### Steps to Add the `README.md` to Your Repository
+## Installation
 
-1. **Create the `README.md` File:**
-   - Open your project directory and create a file named `README.md`.
-   - Copy and paste the above content into the file.
+To set up the project, clone the repository and configure the environment variables, particularly the database connection.
 
-2. **Add the `README.md` to Git:**
-   ```bash
-   git add README.md
+```bash
+git clone https://github.com/zunnurw/food-ordering-system-fyp.git
+cd food-ordering-system-fyp
+
+Ensure that the .env file is properly configured with your database credentials.
